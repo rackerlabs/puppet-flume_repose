@@ -1,4 +1,4 @@
-= flume-repose
+= puppet-flume-repose
 
 {<img src="https://travis-ci.org/rackerlabs/puppet-flume-repose.png?branch=master" alt="Build Status" />}[https://travis-ci.org/rackerlabs/puppet-flume-repose]
 

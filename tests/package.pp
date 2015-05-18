@@ -1,0 +1,1 @@
+class { 'repose_flume::package' }

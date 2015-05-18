@@ -1,0 +1,7 @@
+name 'flume-repose'
+version '1.0.0'
+description "Flume-repose & cf-flume-sink are helper applications which Repose
+leverages to post access events to Cloud Feeds." 
+project_page 'https://github.com/rackerlabs/puppet-flume-repose'
+
+dependency 'puppetlabs/stdlib', '>= 2.0.0'

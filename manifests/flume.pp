@@ -95,12 +95,12 @@ class flume_repose::flume (
   $java_options      = undef,
 ) inherits flume_repose::params {
 
-  class { 'flume-repose':
+  class { 'flume_repose':
     ensure           => $ensure,
     enable           => $enable,
   }
 
-    file { '/etc/sysconfig/flume-ng':
+  file { '/etc/sysconfig/flume-ng':
     ensure  => $flume_repose::file_ensure,
     owner   => root,
     group   => root,
@@ -130,7 +130,7 @@ class flume_repose::flume (
   if ! ($ensure == absent) {
     # run augeas with our changes
     augeas {
-      'repose_sysconfig':
+      'flume_sysconfig':
         context => '/files/etc/sysconfig/flume-ng',
         changes => [ $flume_repose_sysconfig ]
     }

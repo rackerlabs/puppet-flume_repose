@@ -47,9 +47,7 @@ class flume_repose (
 ### Validate parameters
 
 ## ensure
-  if ! ($ensure) {
-    fail("\"${ensure}\" is required. It should be present, absent")
-  } else if !($ensure == "absent" or $ensure == "present" ) {
+  if !($ensure == "absent" or $ensure == "present" ) {
     fail("\"${ensure}\" is required. It should be present, absent")
   } else {
     $file_ensure = $ensure ? {
@@ -77,6 +75,12 @@ class flume_repose (
   }
 
 ### Manage actions
+
+## service
+  class { 'flume_repose::service':
+    ensure => $ensure,
+    enable => $enable
+  }
 
 ## package(s)
   class { 'flume_repose::package':

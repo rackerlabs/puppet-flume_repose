@@ -49,8 +49,13 @@ class flume_repose::package (
 
 ### Manage actions
 
+  package { $flume_repose::params::package:
+    ensure => $package_ensure,
+    before  => Service[ $flume_repose::params::service ],
+  }
+
   package { $flume_repose::params::packages:
     ensure  => $package_flume,
-    require => Package[ $flume_repose::params::package ]
-  }
+    require => Package[ $flume_repose::params::package ],
+  } 
 }

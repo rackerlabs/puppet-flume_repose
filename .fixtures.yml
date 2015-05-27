@@ -2,4 +2,4 @@ fixtures:
   repositories:
     stdlib: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
   symlinks:
-    repose: "#{source_dir}"
+    flume_repose: "#{source_dir}"

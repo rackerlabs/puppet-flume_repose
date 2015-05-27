@@ -1,0 +1,45 @@
+<%-
+# if syslog_server is provided, then add it to the root appenders
+if @syslog_server
+  rootAppenders = [ "syslog", "defaultFile" ]
+else
+  rootAppenders = [ "defaultFile" ]
+end
+-%>
+# Set root logger level
+log4j.rootLogger=<%= @log_level %>, <%= rootAppenders.join(", ") %>
+
+
+log4j.logger.org.apache.flume.lifecycle = INFO
+log4j.logger.org.jboss = WARN
+log4j.logger.org.mortbay = INFO
+log4j.logger.org.apache.avro.ipc.NettyTransceiver = WARN
+log4j.logger.org.apache.hadoop = INFO
+
+
+# File
+<%- if @log_local_policy == 'date' %>
+log4j.appender.defaultFile=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.defaultFile.DatePattern=.yyyy-MM-dd
+<%- elsif @log_local_policy == 'size' %>
+log4j.appender.defaultFile=org.apache.log4j.RollingFileAppender
+log4j.appender.defaultFile.maxFileSize=<%= @log_local_size %>
+log4j.appender.defaultFile.maxBackupIndex=<%= @log_local_rotation_count %>
+<%- else %>
+log4j.appender.defaultFile=org.apache.log4j.varia.NullAppender
+<%- end %>
+log4j.appender.defaultFile.File=<%= @logdir-%>/flume.log
+log4j.appender.defaultFile.Threshold=<%= @log_level %>
+log4j.appender.defaultFile.layout=org.apache.log4j.PatternLayout
+log4j.appender.defaultFile.layout.ConversionPattern=%d{dd MMM yyyy HH:mm:ss,SSS} %-5p [%t] (%C.%M:%L) %x - %m%n
+
+<%- if @syslog_server -%>
+log4j.appender.syslog=org.apache.log4j.net.SyslogAppender
+log4j.appender.syslog.Facility=<%= @log_facility %>
+log4j.appender.syslog.FacilityPrinting=false
+log4j.appender.syslog.Header=true
+log4j.appender.syslog.Threshold=<%= @log_level %>
+log4j.appender.syslog.syslogHost=<%= @syslog_server %>:<%= @syslog_port %>
+log4j.appender.syslog.layout=org.apache.log4j.PatternLayout
+log4j.appender.syslog.layout.ConversionPattern=%d{dd MMM yyyy HH:mm:ss,SSS} %-5p [%t] (%C.%M:%L) %x - %m%n
+<%- end -%>

@@ -34,28 +34,32 @@
 #
 
 class flume_repose::package (
-  $ensure           = $flume_repose::params::ensure,
-) inherits flume_repose::params {
+  $ensure  = $flume_repose::params::ensure,
+  ) inherits flume_repose::params {
 
-### Logic
+  ### Logic
 
-## set params: removal
-  if $ensure == absent {
+  ## set params: removal
+  if ! ($ensure in [ present, absent ]) {
+    fail("\"${ensure}\" is not a valid ensure parameter value")
+  }
+  elsif $ensure == absent {
     $package_ensure = purged
-## set params: in operation
-  } else {
+    ## set params: in operation
+  } 
+  else {
     $package_ensure = $ensure
   }
 
-### Manage actions
-
+  ### Manage actions
+  
   package { $flume_repose::params::package:
-    ensure => $package_ensure,
+    ensure  => $package_ensure,
     before  => Service[ $flume_repose::params::service ],
   }
-
+  
   package { $flume_repose::params::packages:
     ensure  => $package_flume,
-    require => Package[ $flume_repose::params::package ],
+    require  => Package[ $flume_repose::params::package ],
   } 
 }

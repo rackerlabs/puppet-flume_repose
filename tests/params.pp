@@ -1,1 +1,1 @@
-include repose_flume::params
+include flume_repose::params

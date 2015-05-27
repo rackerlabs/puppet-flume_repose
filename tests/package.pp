@@ -1,1 +1,1 @@
-class { 'repose_flume::package' }
+include flume_repose::package

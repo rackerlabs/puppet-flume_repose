@@ -8,14 +8,14 @@ repose-agent.channels = c1
 # Describe/configure the source
 repose-agent.sources.r1.type = <%= @source_type %>
 repose-agent.sources.r1.bind = <%= @source_bind %>
-repose-agent.sources.r1.port = <%= source_port %>
+repose-agent.sources.r1.port = <%= @source_port %>
 
 # Describe the sink
 repose-agent.sinks.k1.type = org.openrepose.flume.sinks.AtomPublishingSink
 repose-agent.sinks.k1.identity.endpoint = <%= @sink_identity_endpoint %>
 repose-agent.sinks.k1.identity.username = <%= @sink_identity_user %>
 repose-agent.sinks.k1.identity.password = <%= @sink_identity_pwd %>
-repose-agent.sinks.k1.feeds.endpoint = <%= sink_feed_endpoint %>
+repose-agent.sinks.k1.feeds.endpoint = <%= @sink_feed_endpoint %>
 
 # http client-to-feeds properties
 repose-agent.sinks.k1.feeds.properties.CONNECTION_TIMEOUT = <%= @sink_timeout %>

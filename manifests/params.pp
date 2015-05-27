@@ -29,126 +29,116 @@
 #
 class flume_repose::params {
 
-## ensure
+  ## ensure
   $ensure = present
   
-## enable
+  ## enable
   $enable = true
-
-### Package specific in
-
-## service
+  
+  ### service params
+  
+  ## service
   $service = $::osfamily ? {
     /(RedHat|Debian)/ => 'flume-ng',
   }
+  
+  ## daemon_home for valve
+  $daemon_home = '/opt/flume'
 
-## service capabilities
+  ## pid file for valve
+  $pid_file = '/var/run/flume-ng.pid'
+
+  ## JAVA_HOME
+  $java_home = '/usr/lib/jvm/jre-1.7.0-openjdk.x86_64'
+
+  ## daemonize bin for repose-valve
+  $daemonize = '/usr/sbin/daemonize'
+  
+  ## daemonize opts for repose-valve
+  $start_args = '-c $DAEMON_HOME -p $PID_FILE -u $USER -o $LOG_PATH/stdout.log -e $LOG_PATH/stderr.log -l /var/lock/subsys/$NAME'
+
+  ## run ops for repose-valve
+  $run_args = 'agent -n repose-agent -c $CONFIG_DIRECTORY -f $CONFIG_DIRECTORY/cf-flume-conf.properties'
+  
+  ## service capabilities
   $service_hasstatus = $::osfamily ? {
     /(RedHat|Debian)/ => true,
   }
-
+  
   $service_hasrestart = $::osfamily ? {
     /(RedHat|Debian)/ => true,
   }
-
-## packages
+  
+  ## packages
   $packages = $::osfamily ? {
     /(RedHat|Debian)/ => [ 'cf-flume-sink' ],
   }
-
-## configdir
+  
+  ## configdir
   $configdir = $::osfamily ? {
     /(RedHat|Debian)/ => '/opt/flume/conf',
   }
-
-## logdir
+  
+  ## logdir
   $logdir = $::osfamily ? {
     /(RedHat|Debian)/ => '/var/log/flume',
   }
-
-## owner
+  
+  ## owner
   $owner = $::osfamily ? {
     /(RedHat|Debian)/ => flume,
   }
-
-## group
+  
+  ## group
   $group = $::osfamily ? {
     /(RedHat|Debian)/ => flume,
   }
-
-## mode
-  $mode = $::osfamily ? {
-    /(RedHat|Debian)/ => '0660',
-  }
-
-## dirmode
-  $dirmode = $::osfamily ? {
-    /(RedHat|Debian)/ => '0750',
-  }
-
-## sourcedir
+  
+  ## sourcedir
   $sourcedir = "puppet:///modules/${module_name}"
-
-## daemon_home for valve
-  $daemon_home = '/opt/flume'
-
-## pid file for valve
-  $pid_file = '/var/run/flume-ng.pid'
-
-## user for valve
+  
+  ## user for valve
   $user = 'flume'
-
-## flume_repose package
+  
+  ## flume_repose package
   $package = $::osfamily ? {
     /(RedHat|Debian)/ => 'flume-repose',
   }
+  
+  ### log4j.properties
 
-## daemonize bin for repose-valve
-  $daemonize = '/usr/sbin/daemonize'
-
-## daemonize opts for repose-valve
-  $daemonize_opts = '-c $DAEMON_HOME -p $PID_FILE -u $USER -o $LOG_PATH/stdout.log -e $LOG_PATH/stderr.log -l /var/lock/subsys/$NAME'
-
-## run ops for repose-valve
-  $run_opts = 'agent -n repose-agent -c $CONFIG_DIRECTORY -f $CONFIG_DIRECTORY/cf-flume-conf.properties'
-
-
-## syslog_port
+  ## syslog_port
    $syslog_port = 514
 
-## syslog_protocol
-  $syslog_protocol = 'udp'
-
-## logging configuration file
-  $logging_configuration = 'log4j.properties'
-
-## default log level
+  ## default log level
   $log_level = 'WARN'
-
-## default local log policy
+  
+  ## default local log policy
   $log_local_policy = 'date'
-
-## default local log size
+  
+  ## default local log size
   $log_local_size = '100MB'
-
-## default local log rotation count
+  
+  ## default local log rotation count
   $log_local_rotation_count = 4
+  
+  ## default syslog facility
+  $log_facility = 'local4'
+  
+  ### cf-flume-sink.properties
+  
+  $source_type = 'avro'
+  $source_bind = 'localhost'
+  $source_port = 10000
+  $sink_timeout = 900
+  $sink_cookie_policy = 'IGNORE_COOKIES'
+  $sink_handle_redirects= 'false'
+  $channel_type = 'file'
+  $channel_checkpoint = '/mnt/flume/checkpoint'
+  $channel_dataDirs = '/mnt/flume/data'
 
-## default repose.log syslog facility
-  $log_repose_facility = 'local0'
+  ### flume_env.sh 
 
-## default http access log syslog facility
-  $log_access_facility = 'local1'
+  $java_opts = '-Xms100m -Xmx200m'
 
-## default http access log syslog app name
-  $log_access_app_name = ''
-
-## default access logging locally
-  $log_access_local = true
-
-## default access log local filename
-  $log_access_local_name = 'http_repose'
-
-## default access logging to syslog
-  $log_access_syslog = true
 }

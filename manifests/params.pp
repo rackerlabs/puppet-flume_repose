@@ -49,7 +49,7 @@ class flume_repose::params {
   $pid_file = '/var/run/flume-ng.pid'
 
   ## JAVA_HOME
-  $java_home = '/usr/lib/jvm/jre-1.7.0-openjdk.x86_64'
+  $java_home = '/usr/lib/jvm/jre'
 
   ## daemonize bin for repose-valve
   $daemonize = '/usr/sbin/daemonize'

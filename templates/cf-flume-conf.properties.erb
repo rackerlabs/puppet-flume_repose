@@ -1,0 +1,32 @@
+# cf-flume-conf.properties: A single-node Flume configuration
+
+# Name the components on this agent
+repose-agent.sources = r1
+repose-agent.sinks = k1
+repose-agent.channels = c1
+
+# Describe/configure the source
+repose-agent.sources.r1.type = <%= @source_type %>
+repose-agent.sources.r1.bind = <%= @source_bind %>
+repose-agent.sources.r1.port = <%= @source_port %>
+
+# Describe the sink
+repose-agent.sinks.k1.type = org.openrepose.flume.sinks.AtomPublishingSink
+repose-agent.sinks.k1.identity.endpoint = <%= @sink_identity_endpoint %>
+repose-agent.sinks.k1.identity.username = <%= @sink_identity_user %>
+repose-agent.sinks.k1.identity.password = <%= @sink_identity_pwd %>
+repose-agent.sinks.k1.feeds.endpoint = <%= @sink_feed_endpoint %>
+
+# http client-to-feeds properties
+repose-agent.sinks.k1.feeds.properties.CONNECTION_TIMEOUT = <%= @sink_timeout %>
+repose-agent.sinks.k1.feeds.properties.COOKIE_POLICY = <%= @sink_cookie_policy %>
+repose-agent.sinks.k1.feeds.properties.HANDLE_REDIRECTS = <%= @sink_handle_redirects %>
+
+# Use a channel which buffers events in memory
+repose-agent.channels.c1.type = <%= @channel_type %>
+repose-agent.channels.c1.checkpointDir = <%= @channel_checkpoint %>
+repose-agent.channels.c1.dataDirs = <%= @channel_dataDirs %>
+
+# Bind the source and sink to the channel
+repose-agent.sources.r1.channels = c1
+repose-agent.sinks.k1.channel = c1

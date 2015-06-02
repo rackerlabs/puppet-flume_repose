@@ -1,0 +1,37 @@
+= puppet-flume-repose
+
+{<img src="https://travis-ci.org/rackerlabs/puppet-flume-repose.png?branch=master" alt="Build Status" />}[https://travis-ci.org/rackerlabs/puppet-flume-repose]
+
+This module provides a re-usable and environment agnostic control of flume-repose & cf-flume-sink.
+
+---
+== Usage of Module
+
+=== Removing flume-repose & cf-flume-sink
+  class { 'flume_repose::flume': ensure => absent }
+
+---
+== Installing this module
+
+=== via GIT
+ git clone http://github.com/rackerlabs/puppet-flume-repose.git /etc/puppet/modules/flume_repose
+
+---
+== Running tests with bundler
+  git clone http://github.com/rackerlabs/puppet-flume-repose.git 
+  cd puppet-flume-repose
+  bundle install
+  bundle exec rake validate
+  bundle exec rake spec
+
+== Running tests
+  git clone http://github.com/rackerlabs/puppet-repose.git 
+  cd puppet-repose
+  gem install rspec-puppet rspec-puppet-utils puppet puppetlabs_spec_helper --no-ri --no-rdoc
+  rake validate
+  rake spec
+
+---
+==Authors
+[Greg Swift] mailto:greg.swift@rackspace.com
+[Greg Sharek] mailto:greg.sharek@rackspace.com

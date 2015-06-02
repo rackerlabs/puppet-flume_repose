@@ -93,12 +93,14 @@ class flume_repose::properties (
   
   validate_string( $source_type )
   validate_string( $source_bind )
-  validate_integer( $source_port )
+  #  until we update our version of stdlib
+  #  validate_integer( $source_port )
   validate_string( $sink_identity_endpoint )
   validate_string( $sink_identity_user )
   validate_string( $sink_identity_pwd )
   validate_string( $sink_identity_feed_endpoint )
-  validate_integer( $sink_timeout )
+  #  until we update our version of stdlib
+  #  validate_integer( $sink_timeout )
   validate_string( $sink_cookie_policy )
   validate_string( $sink_handle_redirects )
   validate_string( $channel_type )

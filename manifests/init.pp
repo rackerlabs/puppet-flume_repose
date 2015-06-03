@@ -247,7 +247,7 @@ class flume_repose::flume_repose (
   
   class { 'flume_repose::log4j':
     ensure        => $ensure,
-    syslog_server => $sys_log_server,
+    syslog_server => $syslog_server,
     syslog_port   => $syslog_port
   }
 }

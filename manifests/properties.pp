@@ -5,7 +5,7 @@
 # and the cf-flume-sink.
 #
 #
-# === Parameters TODO
+# === Parameters
 #
 # [*ensure*]
 # String. Controls if the managed resources shall be <tt>present</tt> or

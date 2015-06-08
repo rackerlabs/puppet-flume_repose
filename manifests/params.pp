@@ -108,7 +108,7 @@ class flume_repose::params {
   ### log4j.properties
 
   ## syslog_port
-   $syslog_port = 514
+  $syslog_port = 514
 
   ## default log level
   $log_level = 'WARN'

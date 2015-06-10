@@ -85,8 +85,7 @@ class flume_repose::service (
   validate_string( $start_args )
   validate_string( $run_args )
   validate_string( $java_home )
-  validate_bool( $enable )
-  
+
   ### Logic
   
   ## set params: off

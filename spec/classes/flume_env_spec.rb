@@ -8,7 +8,7 @@ describe 'flume_repose::flume_env' do
       }
     end
 
-    # defaults for hte log4j class
+    # defaults for the log4j class
     # 1) specify the config file
     # 2) set JAVA_OPTS
     context 'with defaults for all parameters' do

@@ -108,7 +108,7 @@ class flume_repose::params {
   ### log4j.properties
 
   ## syslog_port
-  $syslog_port = 514
+  $syslog_port = '514'
 
   ## default log level
   $log_level = 'WARN'
@@ -120,7 +120,7 @@ class flume_repose::params {
   $log_local_size = '100MB'
   
   ## default local log rotation count
-  $log_local_rotation_count = 4
+  $log_local_rotation_count = '4'
   
   ## default syslog facility
   $log_facility = 'local4'

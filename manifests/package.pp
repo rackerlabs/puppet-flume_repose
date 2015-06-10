@@ -59,7 +59,7 @@ class flume_repose::package (
   }
   
   package { $flume_repose::params::packages:
-    ensure  => $package_flume,
+    ensure   => $package_ensure,
     require  => Package[ $flume_repose::params::package ],
   } 
 }

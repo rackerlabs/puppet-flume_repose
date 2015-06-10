@@ -100,12 +100,6 @@
 # [*channel_type*]
 # Defaults to <tt>channel_type</tt>
 #
-# [*channel_checkpoint*]
-# Defaults to <tt>channel_checkpoint</tt>
-#
-# [*channel_dataDirs*]
-# Defaults to <tt>channel_dataDirs</tt>
-#
 # [*java_opts*]
 # String. Set arguments for the JVM process.
 # Defaults to <tt>-Xms100m -Xmx200m</tt>
@@ -177,8 +171,6 @@ class flume_repose::flume_repose (
   $sink_handle_redirects    = $flume_repose::params::sink_handle_redirects,
 
   $channel_type             = $flume_repose::params::channel_type,
-  $channel_checkpoint       = $flume_repose::params::channel_checkpoint,
-  $channel_dataDirs         = $flume_repose::params::channel_dataDirs,                             
 
   ## flume_env.sh
   $java_opts                = $flume_repose::params::java_opts,
@@ -236,8 +228,6 @@ class flume_repose::flume_repose (
     sink_cookie_policy     => $sink_cookie_policy,
     sink_handle_redirects  => $sink_handle_redirects,
     channel_type           => $channel_type,
-    channel_checkpoint     => $channel_checkpoint,
-    channel_dataDirs       => $channel_dataDirs
   }
   
   class { 'flume_repose::flume_env':

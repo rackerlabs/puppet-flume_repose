@@ -49,12 +49,6 @@
 # [*channel_type*]
 # Defaults to <tt>channel_type</tt>
 #
-# [*channel_checkpoint*]
-# Defaults to <tt>channel_checkpoint</tt>
-#
-# [*channel_dataDirs*]
-# Defaults to <tt>channel_dataDirs</tt>
-#
 # === Examples
 #
 #
@@ -83,8 +77,6 @@ class flume_repose::properties (
   $sink_handle_redirects  = $flume_repose::params::sink_handle_redirects,
 
   $channel_type           = $flume_repose::params::channel_type,
-  $channel_checkpoint     = $flume_repose::params::channel_checkpoint,
-  $channel_dataDirs       = $flume_repose::params::channel_dataDirs,                             
   ) inherits flume_repose::params {
 
   ### Validate parameters
@@ -132,5 +124,12 @@ class flume_repose::properties (
     group   => $flume_repose::params::group,
     require => [ Package[ $flume_repose::params::package ] ],
     content => $template
+  }
+
+  file { ["/mnt", "/mnt/flume", "/mnt/flume/checkpoint", "/mnt/flume/data"]:
+    ensure  => "directory",
+    owner   => $flume_repose::params::owner,
+    group   => $flume_repose::params::group,
+    mode    => 750
   }
 }

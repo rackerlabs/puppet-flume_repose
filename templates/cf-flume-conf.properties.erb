@@ -24,8 +24,8 @@ repose-agent.sinks.k1.feeds.properties.HANDLE_REDIRECTS = <%= @sink_handle_redir
 
 # Use a channel which buffers events in memory
 repose-agent.channels.c1.type = <%= @channel_type %>
-repose-agent.channels.c1.checkpointDir = <%= @channel_checkpoint %>
-repose-agent.channels.c1.dataDirs = <%= @channel_dataDirs %>
+repose-agent.channels.c1.checkpointDir = /mnt/flume/checkpoint
+repose-agent.channels.c1.dataDirs = /mnt/flume/data
 
 # Bind the source and sink to the channel
 repose-agent.sources.r1.channels = c1

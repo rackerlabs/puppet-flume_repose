@@ -134,8 +134,6 @@ class flume_repose::params {
   $sink_cookie_policy = 'IGNORE_COOKIES'
   $sink_handle_redirects= 'false'
   $channel_type = 'file'
-  $channel_checkpoint = '/mnt/flume/checkpoint'
-  $channel_dataDirs = '/mnt/flume/data'
 
   ### flume_env.sh 
 

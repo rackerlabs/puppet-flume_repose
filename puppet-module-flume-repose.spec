@@ -1,5 +1,5 @@
 %define user rackerlabs
-%define base_name flume-repose
+%define base_name flume_repose
 
 Name:      puppet-module-%{user}-%{base_name}
 Version:   1.4.3

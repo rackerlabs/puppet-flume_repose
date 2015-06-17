@@ -144,7 +144,7 @@
 # * Greg Sharek <mailto:greg.sharek@rackspace.com>
 #
 
-class flume_repose::flume_repose (
+class flume_repose (
   $ensure                   = $flume_repose::params::ensure,
   $enable                   = $flume_repose::params::enable,
   

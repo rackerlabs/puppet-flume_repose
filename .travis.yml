@@ -10,7 +10,6 @@ gemfile: .gemfiles/Gemfile.rspec
 
 script:
  - "bundle install"
- - "bundle exec rake lint"
  - "bundle exec rake syntax"
  - "bundle exec rake spec SPEC_OPTS='--format documentation'"
 

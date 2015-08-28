@@ -1,3 +1,4 @@
+TEST
 = puppet-flume_repose
 
 {<img src="https://travis-ci.org/rackerlabs/puppet-flume_repose.png?branch=master" alt="Build Status" />}[https://travis-ci.org/rackerlabs/puppet-flume_repose]

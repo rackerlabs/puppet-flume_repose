@@ -130,6 +130,6 @@ class flume_repose::properties (
     ensure  => "directory",
     owner   => $flume_repose::params::owner,
     group   => $flume_repose::params::group,
-    mode    => 750
+    mode    => '0750'
   }
 }

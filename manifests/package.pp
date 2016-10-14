@@ -62,4 +62,11 @@ class flume_repose::package (
     ensure   => $package_ensure,
     require  => Package[ $flume_repose::params::package ],
   } 
+
+  if $flume_repose::install_daemonize {
+    package { 'daemonize':
+      ensure  => $package_ensure,
+      before  => Service[ $flume_repose::params::service ],
+    }
+  }
 }

@@ -51,6 +51,9 @@ class flume_repose::params {
   ## JAVA_HOME
   $java_home = '/usr/lib/jvm/jre'
 
+  ## whether or not to install the daemonize package
+  $install_daemonize = false
+
   ## daemonize bin for repose-valve
   $daemonize = '/usr/sbin/daemonize'
   

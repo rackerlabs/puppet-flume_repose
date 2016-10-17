@@ -75,6 +75,8 @@ class flume_repose::service (
   $start_args      = $flume_repose::params::start_args,
   $run_args        = $flume_repose::params::run_args,
   $java_home       = $flume_repose::params::java_home,
+  $hasstatus       = $flume_repose::params::service_hasstatus,
+  $hasrestart      = $flume_repose::params::service_hasrestart,
   ) inherits flume_repose::params {
 
   ### Validate
@@ -148,7 +150,7 @@ class flume_repose::service (
   service { $flume_repose::params::service:
     ensure     => $service_ensure,
     enable     => $enable,
-    hasstatus  => $flume_repose::params::service_hasstatus,
-    hasrestart => $flume_repose::params::service_hasrestart,
+    hasstatus  => $hasstatus,
+    hasrestart => $hasrestart,
   }
 }

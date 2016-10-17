@@ -47,6 +47,10 @@
 # String. User to run flume-ng as
 # Defaults to <tt>repose</tt>
 #
+# [*install_daemonize*]
+# Boolean. Whether or not to install the daemonize package
+# Defaults to <tt>false</tt>
+#
 # [*daemonize*]
 # String. the path to the daemonize binary
 # Defaults to <tt>/usr/sbin/daemonize</tt>
@@ -151,6 +155,7 @@ class flume_repose::flume_repose (
   ## service
   $daemon_home              = $flume_repose::params::daemon_home,
   $user                     = $flume_repose::params::user,
+  $install_daemonize        = $flume_repose::params::install_daemonize,
   $daemonize                = $flume_repose::params::daemonize,
   $start_args               = $flume_repose::params::start_args,
   $run_args                 = $flume_repose::params::run_args,

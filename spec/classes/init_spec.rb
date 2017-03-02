@@ -14,7 +14,6 @@ describe 'flume_repose::flume_repose' do
   # 3) configure flume
   context 'with defaults for all parameters' do
     it {
-      should contain_class( 'flume_repose::flume_repose' )
       should contain_class( 'flume_repose::service' ).with_ensure( 'present' )
       should contain_class( 'flume_repose::package' ).with_ensure( 'present' )
       should contain_file( '/opt/flume/conf/cf-flume-conf.properties' ).with(
@@ -36,7 +35,6 @@ describe 'flume_repose::flume_repose' do
   context 'uninstall parameters' do
     let(:params) { { :ensure => 'absent' }}
     it {
-      should contain_class( 'flume_repose::flume_repose' )
       should contain_class( 'flume_repose::service' ).with_ensure( 'absent' )
       should contain_class( 'flume_repose::package' ).with_ensure( 'absent' )
       should contain_file( '/opt/flume/conf/cf-flume-conf.properties' ).with(

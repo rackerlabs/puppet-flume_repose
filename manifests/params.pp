@@ -133,6 +133,7 @@ class flume_repose::params {
   $source_type = 'avro'
   $source_bind = 'localhost'
   $source_port = 10000
+  $source_event_size = undef
   $sink_timeout = 900
   $sink_cookie_policy = 'IGNORE_COOKIES'
   $sink_handle_redirects= 'false'

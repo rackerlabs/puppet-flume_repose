@@ -48,5 +48,27 @@ describe 'flume_repose::properties' do
                    with_content( /repose-agent.sinks.k1.feeds.endpoint = sink_feed_endpoint/ )
       }
     end
+
+    # set all parameters and event size
+    context 'set all parameters and event size' do
+      let(:params) {{
+          :sink_identity_endpoint => 'sink_identity_endpoint',
+          :sink_identity_user => 'sink_identity_user',
+          :sink_identity_pwd => 'sink_identity_pwd',
+          :sink_feed_endpoint => 'sink_feed_endpoint',
+          :source_event_size => 'source_event_size',
+      }}
+      it {
+        should contain_file( '/opt/flume/conf/cf-flume-conf.properties' ).with(
+                   'ensure' => 'file',
+                   'owner'  => 'flume',
+                   'group'  => 'flume' ).
+                   with_content( /repose-agent.sinks.k1.identity.endpoint = sink_identity_endpoint/ ).
+                   with_content( /repose-agent.sinks.k1.identity.username = sink_identity_user/ ).
+                   with_content( /repose-agent.sinks.k1.identity.password = sink_identity_pwd/ ).
+                   with_content( /repose-agent.sinks.k1.feeds.endpoint = sink_feed_endpoint/ ).
+                   with_content( /repose-agent.sources.r1.eventSize = source_event_size/ )
+      }
+    end
   end
 end

@@ -21,6 +21,9 @@
 # [*source_port*]
 # Defaults to <tt>source_port</tt>
 #
+# [*source_event_size*]
+# Defaults to <tt>source_event_size</tt>
+#
 # [*sink_identity_endpoint*]
 # The identity endpoint to authenticate against (hostname only).
 # Defaults to <tt>undef</tt>
@@ -63,6 +66,7 @@
 #
 class flume_repose::properties (
   $ensure                 = present,
+  $source_event_size      = $flume_repose::params::source_event_size,
   $source_type            = $flume_repose::params::source_type,
   $source_bind            = $flume_repose::params::source_bind,
   $source_port            = $flume_repose::params::source_port,

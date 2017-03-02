@@ -9,7 +9,7 @@ before_install: rm .gemfiles/Gemfile.rspec.lock || true
 gemfile: .gemfiles/Gemfile.rspec
 
 script:
- - "bundle exec rake lint"
+ - "bundle install"
  - "bundle exec rake syntax"
  - "bundle exec rake spec SPEC_OPTS='--format documentation'"
 

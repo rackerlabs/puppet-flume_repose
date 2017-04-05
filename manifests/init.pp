@@ -197,10 +197,9 @@ class flume_repose::flume_repose (
   ) inherits flume_repose::params {
 
   ## enable - we don't validate because all standard options are acceptable
-  if $::debug {
-    if $enable != $flume_repose::params::enable {
-      debug('$enable overridden by class parameter')
-    }
+  if $enable != $flume_repose::params::enable {
+    debug('$enable overridden by class parameter')
+  } else {
     debug("\$enable = '${enable}'")
   }
   
@@ -220,7 +219,8 @@ class flume_repose::flume_repose (
   
   ## package(s)
   class { 'flume_repose::package':
-    ensure  => $ensure,
+    ensure            => $ensure,
+    install_daemonize => $install_daemonize
   }
   
   ## configuration files

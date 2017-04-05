@@ -84,9 +84,7 @@ class flume_repose::log4j (
       absent  => absent,
     }
   }
-  if $::debug {
-    debug("\$ensure = '${ensure}'")
-  }
+  debug("\$ensure = '${ensure}'")
   
   $logging_configuration_file = "${flume_repose::params::configdir}/log4j.properties"
   

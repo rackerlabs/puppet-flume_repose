@@ -96,6 +96,7 @@ class flume_repose::service (
   }
   elsif $ensure == absent {
     $service_ensure = stopped
+    $file_ensure = absent
     ## set params: in operation
   } 
   else {
@@ -104,12 +105,13 @@ class flume_repose::service (
       true    => running,
       default => manual
     }
+    $file_ensure = file
   }
 
   #### Set service files
 
   file { '/etc/sysconfig/flume-ng':
-    ensure  => $flume_repose::file_ensure,
+    ensure  => $file_ensure,
     owner   => root,
     group   => root,
     require => [ Package[ $flume_repose::params::package ] ],

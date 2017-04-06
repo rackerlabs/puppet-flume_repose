@@ -39,9 +39,7 @@ class flume_repose::flume_env (
       absent  => absent,
     }
   }
-  if $::debug {
-    debug("\$ensure = '${ensure}'")
-  }
+  debug("\$ensure = '${ensure}'")
     
   $flume_env_path = "${flume_repose::params::configdir}/flume-env.sh"          
   $template = template( "${module_name}/flume-env.sh.erb" )

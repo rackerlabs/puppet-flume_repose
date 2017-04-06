@@ -34,7 +34,8 @@
 #
 
 class flume_repose::package (
-  $ensure  = $flume_repose::params::ensure,
+  $ensure            = $flume_repose::params::ensure,
+  $install_daemonize = false,
   ) inherits flume_repose::params {
 
   ### Logic
@@ -63,7 +64,7 @@ class flume_repose::package (
     require  => Package[ $flume_repose::params::package ],
   } 
 
-  if $flume_repose::install_daemonize {
+  if $install_daemonize {
     package { 'daemonize':
       ensure  => $package_ensure,
       before  => Service[ $flume_repose::params::service ],

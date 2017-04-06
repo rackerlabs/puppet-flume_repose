@@ -76,6 +76,9 @@
 # [*source_port*]
 # Defaults to <tt>source_port</tt>
 #
+# [*source_event_size*]
+# Defaults to <tt>source_event_size</tt>
+#
 # [*sink_identity_endpoint*]
 # The identity endpoint to authenticate against (hostname only).
 # Defaults to <tt>undef</tt>
@@ -165,6 +168,7 @@ class flume_repose::flume_repose (
   $source_type              = $flume_repose::params::source_type,
   $source_bind              = $flume_repose::params::source_bind,
   $source_port              = $flume_repose::params::source_port,
+  $source_event_size        = $flume_repose::params::source_event_size,
 
   $sink_identity_endpoint   = undef,
   $sink_identity_user       = undef,
@@ -193,10 +197,9 @@ class flume_repose::flume_repose (
   ) inherits flume_repose::params {
 
   ## enable - we don't validate because all standard options are acceptable
-  if $::debug {
-    if $enable != $flume_repose::params::enable {
-      debug('$enable overridden by class parameter')
-    }
+  if $enable != $flume_repose::params::enable {
+    debug('$enable overridden by class parameter')
+  } else {
     debug("\$enable = '${enable}'")
   }
   
@@ -216,7 +219,8 @@ class flume_repose::flume_repose (
   
   ## package(s)
   class { 'flume_repose::package':
-    ensure  => $ensure,
+    ensure            => $ensure,
+    install_daemonize => $install_daemonize
   }
   
   ## configuration files
@@ -225,6 +229,7 @@ class flume_repose::flume_repose (
     source_type            => $source_type,
     source_bind            => $source_bind, 
     source_port            => $source_port, 
+    source_event_size      => $source_event_size,
     sink_identity_endpoint => $sink_identity_endpoint,
     sink_identity_user     => $sink_identity_user,         
     sink_identity_pwd      => $sink_identity_pwd,

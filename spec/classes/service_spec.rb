@@ -1,5 +1,6 @@
 require 'spec_helper'
 describe 'flume_repose::service' do
+
   context 'on RedHat' do
     let :facts do
       {

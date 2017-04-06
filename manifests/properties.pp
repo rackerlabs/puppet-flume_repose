@@ -21,6 +21,9 @@
 # [*source_port*]
 # Defaults to <tt>source_port</tt>
 #
+# [*source_event_size*]
+# Defaults to <tt>source_event_size</tt>
+#
 # [*sink_identity_endpoint*]
 # The identity endpoint to authenticate against (hostname only).
 # Defaults to <tt>undef</tt>
@@ -63,6 +66,7 @@
 #
 class flume_repose::properties (
   $ensure                 = present,
+  $source_event_size      = $flume_repose::params::source_event_size,
   $source_type            = $flume_repose::params::source_type,
   $source_bind            = $flume_repose::params::source_bind,
   $source_port            = $flume_repose::params::source_port,
@@ -90,14 +94,12 @@ class flume_repose::properties (
   validate_string( $sink_identity_endpoint )
   validate_string( $sink_identity_user )
   validate_string( $sink_identity_pwd )
-  validate_string( $sink_identity_feed_endpoint )
+  validate_string( $sink_feed_endpoint )
   #  until we update our version of stdlib
   #  validate_integer( $sink_timeout )
   validate_string( $sink_cookie_policy )
   validate_string( $sink_handle_redirects )
   validate_string( $channel_type )
-  validate_string( $channel_checkpoint )
-  validate_string( $channel_dataDirs )
   
   ## ensure
   
@@ -110,9 +112,7 @@ class flume_repose::properties (
     }
   }
   
-  if $::debug {
-    debug("\$ensure = '${ensure}'")
-  }
+  debug("\$ensure = '${ensure}'")
   
   $config_path = "${flume_repose::params::configdir}/cf-flume-conf.properties"
   

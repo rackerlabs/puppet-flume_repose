@@ -9,6 +9,9 @@ repose-agent.channels = c1
 repose-agent.sources.r1.type = <%= @source_type %>
 repose-agent.sources.r1.bind = <%= @source_bind %>
 repose-agent.sources.r1.port = <%= @source_port %>
+<%- if @source_event_size %>
+repose-agent.sources.r1.eventSize = <%= @source_event_size %>
+<% end %>
 
 # Describe the sink
 repose-agent.sinks.k1.type = org.openrepose.flume.sinks.AtomPublishingSink
